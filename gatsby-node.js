@@ -1,7 +1,6 @@
 const {
   SubsocialApi,
   generateCrustAuthToken,
-  getSubstrateApi,
 } = require("@subsocial/api")
 //const { bnsToIds, idToBn } = require("@subsocial/utils")
 
@@ -59,8 +58,9 @@ exports.sourceNodes = async (
 ) => {
   const { createNode } = actions
 
+  if (recommendedSpaceIds) {
   const listSpaces = await api.findPublicSpaces(recommendedSpaceIds)
-  //console.log(listSpaces)
+  console.log(listSpaces)
 
   listSpaces.map(async item => {
     //const postsCount = (await api.blockchain.postsCountBySpaceId(struct.id)).toString()
@@ -109,4 +109,25 @@ exports.sourceNodes = async (
 
   // const node = Object.assign({}, nodeMeta, space)
   // createNode(node)
+  } else {
+    const item = await api.findSpace({ id: '1' });
+    console.log(item);
+    const nodeMeta = {
+      ...item.content,
+      id: createNodeId(`${item.struct.id}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: `MyNodeTypeSpace`,
+        contentDigest: createContentDigest(item),
+        content: JSON.stringify({
+          ...item.content,
+          id: item.struct.contentId,
+        }),
+      },
+    }
+
+    const node = Object.assign({}, nodeMeta, item)
+    createNode(node)
+  }
 }

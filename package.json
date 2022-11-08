@@ -11,12 +11,12 @@
   "author": "alanfernando93 <alanfernando93.am@gmail.com>",
   "license": "ISC",
   "peerDependencies": {
-    "gatsby": "^5.0.0-next"
-  },
-  "type": "commonjs",
-  "dependencies": {
     "@subsocial/api": "^0.7.8-dev.0",
     "@subsocial/utils": "^0.7.8-dev.0",
-    "@tryghost/content-api": "^1.11.4"
+    "@tryghost/content-api": "^1.11.4",
+    "gatsby-source-ghost": "^5.0.0",
+    "gatsby": "^4.24.5"
+  },
+  "dependencies": {
   }
 }
