@@ -9,6 +9,7 @@ con los siguientes parametros
 substrateNodeUrl .- websoket de la blockchain a conectarse
 ipfsNodeUrl .- url de la api para las ipfs
 recommendedSpaceIds .- un listado de ids de spaces que quiera acceder
+addressAccount .- direecion de cuenta en la blockchain
 
 example
 ```
@@ -17,7 +18,8 @@ example
 	options: {
     substrateNodeUrl: `wss://para.subsocial.network`,
     ipfsNodeUrl: `https://app.subsocial.network/ipfs`,
-    recommendedSpaceIds: ["1", "1001", "1002", "10316"]
+    recommendedSpaceIds: ["1", "1001", "1002", "10316"],
+    addressAccount: "3sD7b8HxT2rg8SNhgZZcgG3bSffVLq5drAvDqDfM8CJ6SU6x"
 	},
 },
 ```
@@ -31,7 +33,7 @@ por ejemplo
 ```
 export const query = graphql`
   query {
-    allMyNodeTypeSpace {
+    allSpacesSubsocial {
       edges {
         node {
           id
