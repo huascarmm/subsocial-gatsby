@@ -1,7 +1,10 @@
 const { SubsocialApi, generateCrustAuthToken } = require("@subsocial/api");
 //const { bnsToIds, idToBn } = require("@subsocial/utils")
 
-exports.onCreateDevServer = async ({ app }) => {
+exports.onCreateDevServer = async ({ app }, {
+  substrateNodeUrl,
+  ipfsNodeUrl
+}) => {
   /* Creating flatSubsocialApi object */
   const api = await SubsocialApi.create({
     substrateNodeUrl,
