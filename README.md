@@ -1,5 +1,30 @@
+## **1. Bounty Category**
 
+Subsocial Ghost/Gatsby
 
+## **2. Github link**
+
+https://github.com/huascarmm/subsocial-gatsby
+
+## **3. Video link**
+
+## **4. Description**
+
+This is a plugin to get data from sub social and implement in gatsby and ghost
+
+## **6. Developer\*\***
+
+Huáscar Miranda. - [huascarm@gmail.com](mailto:huascarm@gmail.com) - [https://github.com/huascarmm](https://github.com/huascarmm)
+
+## **7.Project.**
+
+Subsocial Plugin for Ghost/Gatsby
+
+## **9. Problem**
+
+Need of a plugin for gatsby/ghost to get data
+
+## **10.How to use in gatsby**
 
 step1
 configurar los enlaces de la blockchain en el archivo gatsby-config.js
@@ -12,6 +37,7 @@ recommendedSpaceIds .- un listado de ids de spaces que quiera acceder
 addressAccount .- direecion de cuenta en la blockchain
 
 example
+
 ```
 {
 	resolve: `gatsby-source-subsocial`,
@@ -54,12 +80,20 @@ export const query = graphql`
 `
 ```
 
-
 step 3
 
 configurar credenciales para ghost en el archivo gatsby-config.js
 
-
 apiUrl .- url de su pagina en ghost
 contentApiKey .- apikey que se genera desde su pagina de ghost
 version .- es versionado para la aplicacion por defecto `v5.0`
+
+## **11. Pila tecnológica**
+
+We are implementing a plugin in npm for gatsby.
+
+Link NPM.
+
+## **12. Enlace de la demostración del proyecto (url de la página)**
+
+[https://github.com/huascarmm/subsocial-gatsby-example](https://github.com/huascarmm/subsocial-gatsby-example)
