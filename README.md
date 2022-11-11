@@ -26,7 +26,7 @@ Need of a plugin for gatsby/ghost to get data
 
 ## **10.How to use in gatsby**
 
-#### step1: Setup gatsby-config.js
+#### Step1: Setup gatsby-config.js
 
 Setup the file with these params:
 
@@ -49,7 +49,7 @@ For example
 },
 ```
 
-#### step2: GraphQl requests in components
+#### Step2: GraphQl requests in components
 
 You have to build your query and make graphql requests according your software arquitecture
 
@@ -79,7 +79,7 @@ export const query = graphql`
 `
 ```
 
-#### step3: Ghost credentials
+#### Step3: Ghost credentials
 
 Setup Ghost credentials in gatsby-config.js
 
@@ -97,12 +97,13 @@ For example:
 }
 ```
 
-## **11. Pila tecnológica**
+## **11. Technology**
 
 We are implementing a plugin in npm for gatsby.
+Using javascript, react, gatsby.
 
 Link NPM: [https://www.npmjs.com/package/gatsby-source-subsocial](https://www.npmjs.com/package/gatsby-source-subsocial)
 
-## **12. Enlace de la demostración del proyecto (url de la página)**
+## **12. Project demo**
 
 [https://github.com/huascarmm/subsocial-gatsby-example](https://github.com/huascarmm/subsocial-gatsby-example)
