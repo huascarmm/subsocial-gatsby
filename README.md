@@ -26,17 +26,16 @@ Need of a plugin for gatsby/ghost to get data
 
 ## **10.How to use in gatsby**
 
-step1
-configurar los enlaces de la blockchain en el archivo gatsby-config.js
+#### step1: Setup gatsby-config.js
 
-con los siguientes parametros
+Setup the file with these params:
 
-substrateNodeUrl .- websoket de la blockchain a conectarse
-ipfsNodeUrl .- url de la api para las ipfs
-recommendedSpaceIds .- un listado de ids de spaces que quiera acceder
-addressAccount .- direecion de cuenta en la blockchain
+- substrateNodeUrl: subsocial websocket
+- ipfsNodeUrl : ipfs url
+- recommendedSpaceIds : Array of spaces
+- addressAccount : subsocial address
 
-example
+For example
 
 ```
 {
@@ -50,11 +49,11 @@ example
 },
 ```
 
-step 2
+#### step2: GraphQl requests in components
 
-realizar las consultas mediante graphQL en sus componentes reactjs
+You have to build your query and make graphql requests according your software arquitecture
 
-por ejemplo
+For example:
 
 ```
 export const query = graphql`
@@ -80,19 +79,29 @@ export const query = graphql`
 `
 ```
 
-step 3
+#### step3: Ghost credentials
 
-configurar credenciales para ghost en el archivo gatsby-config.js
+Setup Ghost credentials in gatsby-config.js
 
-apiUrl .- url de su pagina en ghost
-contentApiKey .- apikey que se genera desde su pagina de ghost
-version .- es versionado para la aplicacion por defecto `v5.0`
+- apiUrl : your ghost page url
+- contentApiKey : apikey generated from ghost
+- version : by default `v5.0`
+
+For example:
+
+```
+{
+  apiUrl: `https://subsocial.ghost.io`,
+  contentApiKey: `xxxxxxxxxx`,
+  version: `v5.0`
+}
+```
 
 ## **11. Pila tecnológica**
 
 We are implementing a plugin in npm for gatsby.
 
-Link NPM.
+Link NPM: [https://www.npmjs.com/package/gatsby-source-subsocial](https://www.npmjs.com/package/gatsby-source-subsocial)
 
 ## **12. Enlace de la demostración del proyecto (url de la página)**
 
