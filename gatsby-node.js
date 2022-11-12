@@ -1,58 +1,11 @@
 const { SubsocialApi, generateCrustAuthToken } = require("@subsocial/api");
 //const { bnsToIds, idToBn } = require("@subsocial/utils")
 
-exports.onCreateDevServer = async ({ app }, {
-  substrateNodeUrl,
-  ipfsNodeUrl
-}) => {
-  /* Creating flatSubsocialApi object */
-  const api = await SubsocialApi.create({
-    substrateNodeUrl,
-    ipfsNodeUrl,
-  });
-
-  const authHeader = generateCrustAuthToken(
-    "bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice"
-  );
-
-  // Data can come from anywhere, but for now create it manually
-  api.ipfs.setWriteHeaders({
-    authorization: "Basic " + authHeader,
-  });
-
-  app.post("/api/spaces", async function (req, res) {
-    const cid = await api.ipfs.saveContent({
-      about:
-        "Subsocial is an open protocol for decentralized social networks and marketplaces. It`s built with Substrate and IPFS",
-      image: "Qmasp4JHhQWPkEpXLHFhMAQieAH1wtfVRNHWZ5snhfFeBe", // ipfsImageCid = await api.subsocial.ipfs.saveFile(file)
-      name: "Subsocial",
-      tags: ["subsocial"],
-    });
-
-    const tx = api.substrateApi.tx.spaces.createSpace(IpfsContent(cid), null);
-  });
-
-  app.post("/api/posts", async function (req, res) {
-    res.send("hello world");
-
-    const cid = await api.ipfs.saveContent({
-      body: "Keep up the good work!",
-    });
-
-    const tx = api.substrateApi.tx.posts.createPost(
-      "1",
-      { SharedPost: "1" },
-      IpfsContent(cid)
-    );
-  });
-};
-
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
   {
     nodeName,
-    typeFetch,
-    ipfsUrl,
+    phraseSecret,
     substrateNodeUrl,
     ipfsNodeUrl,
     recommendedSpaceIds,
@@ -61,6 +14,14 @@ exports.sourceNodes = async (
 ) => {
   const { createNode } = actions;
 
+  if (!phraseSecret) return new Error("phraseSecret not found");
+
+  /**
+   * function to set data whitin node gatsby
+   * 
+   * @param {*} item data object
+   * @param {*} typeNode name or type to node
+   */
   const pushNode = (item, typeNode) => {
     const nodeMeta = {
       ...item.content,
@@ -81,18 +42,37 @@ exports.sourceNodes = async (
     createNode(node);
   };
 
+  /**
+   * space By Owner
+   * 
+   * @param {*} accountId 
+   * @param {*} callback function to set spaceIds list how params 
+   * @returns 
+   */
   const spaceByOwner = async (accountId, callback) => {
     const spaceIds = await api.blockchain.spaceIdsByOwner(accountId);
     if (callback) callback(spaceIds);
     return api.base.findSpaces({ ids: spaceIds });
   };
 
+  /**
+   * posts by spaceId
+   * 
+   * @param {*} spaceId 
+   * @returns 
+   */
   const postBySpaceId = async (spaceId) => {
     const postIds = await api.blockchain.postIdsBySpaceId(spaceId);
     return api.base.findPosts({ ids: postIds });
   };
 
-  const spacesByProfileAccounts = (accountIds) => {
+  /**
+   * spaces by profile accounts
+   * 
+   * @param {*} accountIds 
+   * @returns 
+   */
+  const spacesByProfileAccounts = (accountIds) => {  // future implementation
     return Array.isArray(accountIds)
       ? api.base.findProfileSpaces(accountIds)
       : api.base.findProfileSpace(accountIds);
@@ -104,9 +84,7 @@ exports.sourceNodes = async (
     ipfsNodeUrl,
   });
 
-  const authHeader = generateCrustAuthToken(
-    "bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice"
-  );
+  const authHeader = generateCrustAuthToken(phraseSecret);
 
   // Data can come from anywhere, but for now create it manually
   api.ipfs.setWriteHeaders({
