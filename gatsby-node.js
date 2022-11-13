@@ -14,10 +14,11 @@ exports.sourceNodes = async (
 ) => {
   const { createNode } = actions;
 
+  // Verifica si se pasa phraseSecret
   if (!phraseSecret) return new Error("phraseSecret not found");
 
   /**
-   * function to set data whitin node gatsby
+   * function to set data within node gatsby
    * 
    * @param {*} item data object
    * @param {*} typeNode name or type to node
@@ -91,7 +92,9 @@ exports.sourceNodes = async (
     authorization: "Basic " + authHeader,
   });
 
+  // verifica si se pasa addressAccount
   if (addressAccount) {
+    // Busca espacios publicos en subsocial y luego seran agregados como nodos a gatsby
     spaceByOwner(addressAccount, (spaceIds) => {
       spaceIds.forEach(spaceId => {
         postBySpaceId(spaceId).then(posts => {
@@ -108,7 +111,9 @@ exports.sourceNodes = async (
     })
   }
 
+  // verifica si se pasa los ids recommendedSpaceIds
   if (recommendedSpaceIds) {
+    // Busca espacios publicos en subsocial y luego seran agregados como nodos a gatsby
     api.findPublicSpaces(recommendedSpaceIds).then(listSpaces => {
       listSpaces.map(async (item) => {
         //const postsCount = (await api.blockchain.postsCountBySpaceId(struct.id)).toString()
