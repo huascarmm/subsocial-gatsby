@@ -1,7 +1,7 @@
 {
   "name": "gatsby-source-subsocial",
-  "version": "1.0.3",
-  "description": "",
+  "version": "1.0.4",
+  "description": "step1 configurar los enlaces de la blockchain en el archivo gatsby-config.js",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -21,6 +21,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/alanfernando93/gatsby-source-subsocial"
-  }
+    "url": "git+https://gitlab.com/alanfernando93/gatsby-source-subsocial.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/alanfernando93/gatsby-source-subsocial/issues"
+  },
+  "homepage": "https://gitlab.com/alanfernando93/gatsby-source-subsocial#readme",
+  "devDependencies": {}
 }
